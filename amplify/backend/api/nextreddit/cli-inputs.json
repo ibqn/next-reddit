@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "nextreddit",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/home/ibqn/devel/next-reddit/amplify/backend/api/nextreddit/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
+  }
+}
