@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 
 export default function Home() {
   return (
@@ -10,7 +9,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="bg-teal-200 h-screen">
+      <main className="h-screen bg-teal-200">
         <h1 className="text-3xl font-bold underline">Hello world!</h1>
       </main>
 

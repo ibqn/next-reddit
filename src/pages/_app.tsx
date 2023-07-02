@@ -1,4 +1,4 @@
-import 'styles/globals.css'
+import '@/styles/globals.css'
 import '@fontsource/ibm-plex-sans'
 
 function MyApp({ Component, pageProps }) {
