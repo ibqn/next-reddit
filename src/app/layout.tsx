@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import { IBM_Plex_Sans } from 'next/font/google'
+import { type ReactNode } from 'react'
 
 const font = IBM_Plex_Sans({
   subsets: ['latin'],
@@ -11,7 +12,7 @@ export const metadata = {
   description: 'Next Reddit',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={font.className}>{children}</body>
