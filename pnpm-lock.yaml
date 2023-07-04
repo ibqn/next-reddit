@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@fontsource/ibm-plex-sans':
-    specifier: ^5.0.3
-    version: 5.0.3
+    specifier: ^5.0.4
+    version: 5.0.4
   '@radix-ui/react-slot':
     specifier: ^1.0.2
     version: 1.0.2(@types/react@18.2.14)(react@18.2.0)
@@ -122,8 +122,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: false
 
-  /@fontsource/ibm-plex-sans@5.0.3:
-    resolution: {integrity: sha512-KcU73ZHJ1Hl2TyrTHdy4f4ajO+oPHXI3oXzmRpefifb/s/72LCtw/dVtxoQ3p8a2tRM3/I0xH15NLcgn0+R89w==}
+  /@fontsource/ibm-plex-sans@5.0.4:
+    resolution: {integrity: sha512-XchiAy38h8Zvk++E1jDtAW5/+wVTuP9iT0p3i0+GxbNsTNHBq6DWlzFKCAx21wrEU8H74WsictYnkvqDFt1F9g==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.10:
