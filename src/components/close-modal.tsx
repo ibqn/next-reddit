@@ -6,7 +6,7 @@ import { X } from 'lucide-react'
 
 type Props = {}
 
-export default function CloseModal(props: Props) {
+export function CloseModal(props: Props) {
   const router = useRouter()
 
   return (

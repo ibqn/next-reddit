@@ -1,6 +1,5 @@
 import { Icon } from './icon'
 import Link from 'next/link'
-import { buttonVariants } from './ui/button'
 import { SignInButton } from './sign-in-button'
 
 type Props = {}
