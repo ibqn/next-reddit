@@ -2,6 +2,7 @@ import { Icon } from './icon'
 import Link from 'next/link'
 import { SignInButton } from './sign-in-button'
 import { getAuthSession } from '@/lib/auth'
+import { UserAccountNav } from './user-account-nav'
 
 type Props = {}
 
@@ -18,8 +19,7 @@ export const Navbar = async (props: Props) => {
 
         {/* search bar */}
 
-        {/* actions */}
-        <SignInButton />
+        {session?.user ? <UserAccountNav user={session.user} /> : <SignInButton />}
       </div>
     </div>
   )
