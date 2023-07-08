@@ -1,10 +1,10 @@
 'use client'
 
-import { QueryClient } from '@tanstack/react-query'
-import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { PersistQueryClientProvider, Persister } from '@tanstack/react-query-persist-client'
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { type ReactNode, useState } from 'react'
+import { type ReactNode, useState, useEffect } from 'react'
 
 type Props = {
   children: ReactNode
@@ -12,16 +12,30 @@ type Props = {
 
 export function Providers({ children }: Props) {
   const [queryClient] = useState(() => new QueryClient())
-  const [persister] = useState(() =>
-    createSyncStoragePersister({
-      storage: window.localStorage,
-    })
+  const [persister, setPersister] = useState<Persister | null>(null)
+
+  useEffect(() => {
+    setPersister(() =>
+      createSyncStoragePersister({
+        storage: window.localStorage,
+      })
+    )
+  }, [])
+
+  const body = (
+    <>
+      {children}
+      <ReactQueryDevtools initialIsOpen={false} />
+    </>
   )
+
+  if (!persister) {
+    return <QueryClientProvider client={queryClient}>{body}</QueryClientProvider>
+  }
 
   return (
     <PersistQueryClientProvider client={queryClient} persistOptions={{ persister }}>
-      {children}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {body}
     </PersistQueryClientProvider>
   )
 }
