@@ -1,4 +1,5 @@
 import { Navbar } from '@/components/navbar'
+import { Toaster } from '@/components/ui/toaster'
 import { Providers } from '@/lib/providers'
 import '@/styles/globals.css'
 import { cn } from '@/utils'
@@ -30,6 +31,7 @@ export default function RootLayout({ children, authModal }: Props) {
 
           <div className="container mx-auto h-full max-w-7xl pt-12">{children}</div>
         </Providers>
+        <Toaster />
       </body>
     </html>
   )
