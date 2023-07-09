@@ -19,16 +19,11 @@ export const MiniCreatePost = (props: Props) => {
   const router = useRouter()
   const gotoSubmit = useCallback(() => router.push(`${pathname}/submit`), [pathname, router])
 
-  if (!session) {
-    router.push('/sign-in')
-    return
-  }
-
   return (
     <div className="flex h-full justify-between overflow-hidden rounded-md bg-white p-4 shadow">
       <div className="relative">
+        <UserAvatar user={session?.user ?? null} />
         <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 outline outline-2 outline-white" />
-        <UserAvatar user={session?.user} />
       </div>
       <Input className="mx-6" onClick={gotoSubmit} readOnly placeholder="Create post" />
       <Button onClick={gotoSubmit} className="px-2" variant="ghost">
