@@ -35,9 +35,9 @@ export default async function SubredditPage({ params }: Props) {
   }
 
   return (
-    <>
+    <div className="flex flex-col">
       <h1 className="h-14 text-3xl font-bold md:text-4xl">r/{subreddit.name}</h1>
       <MiniCreatePost session={session} />
-    </>
+    </div>
   )
 }

@@ -20,7 +20,7 @@ export const MiniCreatePost = (props: Props) => {
   const gotoSubmit = useCallback(() => router.push(`${pathname}/submit`), [pathname, router])
 
   return (
-    <div className="flex h-full justify-between overflow-hidden rounded-md bg-white p-4 shadow">
+    <div className="flex justify-between overflow-hidden rounded-md bg-white p-4 shadow">
       <div className="relative">
         <UserAvatar user={session?.user ?? null} />
         <span className="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500 outline outline-2 outline-white" />
