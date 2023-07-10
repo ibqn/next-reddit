@@ -8,26 +8,45 @@ import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import { useToast } from '@/components/ui/use-toast'
 
 type Props = {}
 
 export default function CreatePage({}: Props) {
   const router = useRouter()
+  const { toast } = useToast()
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<CreateSubredditPayload>({ resolver: zodResolver(SubredditValidator) })
 
   const { mutate: createCommunity, isLoading } = useMutation({
     mutationFn: (payload: CreateSubredditPayload) => axios.post('/api/subreddit', payload),
+    onSuccess: (data, variables, context) => {
+      reset()
+      toast({
+        title: 'Create community success',
+        description: `The ${variables.name} community was created successfully`,
+        variant: 'green',
+      })
+    },
+    onError: (error, variables, context) => {
+      if (axios.isAxiosError(error) && error.response?.status === 409) {
+        toast({
+          title: 'Create community error',
+          description: 'Community with this name already exists',
+          variant: 'destructive',
+        })
+      } else {
+        toast({ title: 'Create community error', description: 'Something went wrong!', variant: 'destructive' })
+      }
+    },
   })
 
   const onSubmit = handleSubmit((data) => {
-    try {
-      console.log(data)
-      createCommunity(data)
-    } catch (error) {}
+    createCommunity(data)
   })
 
   return (
