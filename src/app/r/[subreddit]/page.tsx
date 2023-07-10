@@ -1,8 +1,8 @@
 import { MiniCreatePost } from '@/components/mini-create-post'
 import { getAuthSession } from '@/lib/auth'
+import { paginationSize } from '@/lib/config'
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
-import React from 'react'
 
 type Props = {
   params: {
@@ -25,6 +25,7 @@ export default async function SubredditPage({ params }: Props) {
           subreddit: true,
         },
         orderBy: { createdAt: 'desc' },
+        take: paginationSize,
       },
     },
   })
