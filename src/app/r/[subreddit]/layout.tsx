@@ -6,6 +6,7 @@ import { buttonVariants } from '@/components/ui/button'
 import { format } from 'date-fns'
 import { notFound } from 'next/navigation'
 import { FeedButton } from '@/components/feed-button'
+import { SubscribeToggle } from '@/components/subscribe-toggle'
 
 type Props = {
   children: ReactNode
@@ -32,7 +33,21 @@ export default async function SubredditLayout({ children, params }: Props) {
     return notFound()
   }
 
-  const memberCount = 3
+  const memberCount = await prisma.subscription.count({
+    where: {
+      subreddit: {
+        name,
+      },
+    },
+  })
+
+  const isSubscribed =
+    session?.user &&
+    (await prisma.subscription.findFirst({
+      where: { subreddit: { name }, user: { id: session.user.id } },
+    }))
+      ? true
+      : false
 
   return (
     <div className="container mx-auto h-full max-w-7xl pt-12">
@@ -64,12 +79,9 @@ export default async function SubredditLayout({ children, params }: Props) {
               </div>
             )}
 
-            {subreddit.creatorId !== session?.user?.id && // <SubscribeLeaveToggle
-              //   isSubscribed={isSubscribed}
-              //   subredditId={subreddit.id}
-              //   subredditName={subreddit.name}
-              // />
-              'subscribe leave'}
+            {subreddit.creatorId !== session?.user?.id && (
+              <SubscribeToggle isSubscribed={isSubscribed} subredditId={subreddit.id} subredditName={subreddit.name} />
+            )}
 
             <Link
               href={`r/${name}/submit`}
