@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 import { format } from 'date-fns'
 import { notFound } from 'next/navigation'
+import { FeedButton } from '@/components/feed-button'
 
 type Props = {
   children: ReactNode
@@ -35,7 +36,8 @@ export default async function SubredditLayout({ children, params }: Props) {
 
   return (
     <div className="container mx-auto h-full max-w-7xl pt-12">
-      back button
+      <FeedButton />
+
       <div className="grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4">
         <div className="col-span-2">{children}</div>
 
