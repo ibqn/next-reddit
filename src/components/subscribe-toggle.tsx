@@ -9,6 +9,7 @@ import { useToast } from './ui/use-toast'
 import { useCallback, useMemo, useTransition } from 'react'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import { useLoginToasts } from '@/hooks/use-login-toast'
 
 type Props = {
   isSubscribed: boolean
@@ -21,6 +22,7 @@ export const SubscribeToggle = (props: Props) => {
 
   const router = useRouter()
   const { toast } = useToast()
+  const { loginToast } = useLoginToasts()
   const [isPending, startTransition] = useTransition()
 
   const { mutate: subscribe, isLoading: isSubscribePending } = useMutation({
@@ -34,12 +36,8 @@ export const SubscribeToggle = (props: Props) => {
       })
     },
     onError: (error, variables, context) => {
-      if (axios.isAxiosError(error) && error.response?.status === 409) {
-        toast({
-          title: 'Subscription failure',
-          description: 'Community with this name already exists',
-          variant: 'destructive',
-        })
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        loginToast()
       } else {
         toast({
           title: 'Subscription failure',
@@ -61,12 +59,8 @@ export const SubscribeToggle = (props: Props) => {
       })
     },
     onError: (error, variables, context) => {
-      if (axios.isAxiosError(error) && error.response?.status === 409) {
-        toast({
-          title: 'Remove subscription failure',
-          description: 'Community with this name does not exist',
-          variant: 'destructive',
-        })
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        loginToast()
       } else {
         toast({
           title: 'Subscription failure',
