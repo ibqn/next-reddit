@@ -9,7 +9,7 @@ import { useToast } from './ui/use-toast'
 import { useCallback, useMemo, useTransition } from 'react'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { useLoginToasts } from '@/hooks/use-login-toast'
+import { useLoginToast } from '@/hooks/use-login-toast'
 
 type Props = {
   isSubscribed: boolean
@@ -22,7 +22,7 @@ export const SubscribeToggle = (props: Props) => {
 
   const router = useRouter()
   const { toast } = useToast()
-  const { loginToast } = useLoginToasts()
+  const { loginToast } = useLoginToast()
   const [isPending, startTransition] = useTransition()
 
   const { mutate: subscribe, isLoading: isSubscribePending } = useMutation({

@@ -9,12 +9,14 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { useToast } from '@/components/ui/use-toast'
+import { useLoginToast } from '@/hooks/use-login-toast'
 
 type Props = {}
 
 export default function CreatePage({}: Props) {
   const router = useRouter()
   const { toast } = useToast()
+  const { loginToast } = useLoginToast()
   const {
     register,
     reset,
@@ -33,7 +35,9 @@ export default function CreatePage({}: Props) {
       })
     },
     onError: (error, variables, context) => {
-      if (axios.isAxiosError(error) && error.response?.status === 409) {
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        loginToast()
+      } else if (axios.isAxiosError(error) && error.response?.status === 409) {
         toast({
           title: 'Create community error',
           description: 'Community with this name already exists',
