@@ -14,7 +14,7 @@ export function CloseModal(props: Props) {
       variant="subtle"
       className="h-6 w-6 rounded-md p-0"
       onClick={() => {
-        router.back()
+        router.push('/')
       }}
     >
       <X aria-label="close modal" className="h-4 w-4" />

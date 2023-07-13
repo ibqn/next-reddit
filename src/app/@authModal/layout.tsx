@@ -1,4 +1,7 @@
+'use client'
+
 import { CloseModal } from '@/components/close-modal'
+import { usePathname } from 'next/navigation'
 import { ReactNode } from 'react'
 
 type Props = {
@@ -6,6 +9,12 @@ type Props = {
 }
 
 export default function AuthLayout({ children }: Props) {
+  const pathname = usePathname()
+
+  if (!pathname.endsWith('/sign-in') && !pathname.endsWith('/sign-up')) {
+    return null
+  }
+
   return (
     <div className="fixed inset-0 z-10 bg-white/70">
       <div className="container mx-auto flex h-full max-w-lg items-center">
