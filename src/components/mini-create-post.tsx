@@ -17,7 +17,7 @@ export const MiniCreatePost = (props: Props) => {
   const { session } = props
   const pathname = usePathname()
   const router = useRouter()
-  const gotoSubmit = useCallback(() => router.push(`${pathname}/submit`), [pathname, router])
+  const gotoSubmit = useCallback(() => router.push(`${pathname}/post`), [pathname, router])
 
   return (
     <div className="flex justify-between overflow-hidden rounded-md bg-white p-4 shadow">
