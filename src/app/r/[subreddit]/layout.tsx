@@ -83,10 +83,7 @@ export default async function SubredditLayout({ children, params }: Props) {
               <SubscribeToggle isSubscribed={isSubscribed} subredditId={subreddit.id} subredditName={subreddit.name} />
             )}
 
-            <Link
-              href={`r/${name}/submit`}
-              className={buttonVariants({ className: 'mb-6 w-full', variant: 'outline' })}
-            >
+            <Link href={`/r/${name}/post`} className={buttonVariants({ className: 'mb-6 w-full', variant: 'outline' })}>
               Create Post
             </Link>
           </dl>
