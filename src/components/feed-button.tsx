@@ -15,7 +15,7 @@ export const FeedButton = (props: Props) => {
     const destructuredPath = pathname.split('/')
 
     if (destructuredPath.length > 3) {
-      return destructuredPath.slice(0, 2).join('/')
+      return destructuredPath.slice(0, 3).join('/')
     }
 
     return '/'
