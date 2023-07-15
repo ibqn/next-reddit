@@ -1,15 +1,17 @@
 'use client'
 
-import EditorJS from '@editorjs/editorjs'
+import EditorJS, { type OutputData } from '@editorjs/editorjs'
 import { useEffect, useRef } from 'react'
 import { editorTools } from './editor-tools'
 
 type Props = {
   onReady?: () => void
+  onChange?: (value: OutputData) => void
+  data?: OutputData
 }
 
 export const Editor = (props: Props) => {
-  const { onReady } = props
+  const { onReady, data, onChange } = props
 
   const editorJs = useRef<EditorJS | null>(null)
 
@@ -21,9 +23,13 @@ export const Editor = (props: Props) => {
           editorJs.current = editor
           onReady?.()
         },
+        async onChange(api, event) {
+          const data = await api.saver.save()
+          onChange?.(data)
+        },
         placeholder: 'Type here to write your post...',
         inlineToolbar: true,
-        data: { blocks: [] },
+        data,
         tools: editorTools,
       })
     }
@@ -32,7 +38,7 @@ export const Editor = (props: Props) => {
       editorJs?.current?.destroy()
       editorJs.current = null
     }
-  }, [editorJs, onReady])
+  }, [])
 
   return <div id="editor" className="min-h-[500px]"></div>
 }
