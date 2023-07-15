@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button'
 import { UsePostForm } from '@/components/use-post-form'
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
@@ -26,12 +25,6 @@ export default async function PostPage({ params }: Props) {
       </div>
 
       <UsePostForm subredditId={subreddit.id} />
-
-      <div className="flex w-full justify-end">
-        <Button type="submit" className="w-full" form="subreddit-post-form">
-          Post
-        </Button>
-      </div>
     </div>
   )
 }

@@ -3,6 +3,7 @@
 import { useMemo, useRef } from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import dynamic from 'next/dynamic'
+import { Button } from './ui/button'
 
 type Props = {
   subredditId: string
@@ -30,7 +31,7 @@ export const UsePostForm = (props: Props) => {
 
   return (
     <div className="w-full rounded-lg border border-zinc-200 bg-zinc-50 p-4">
-      <form id="subreddit-post-form" className="w-fit" onSubmit={onSubmit}>
+      <form className="flex flex-col items-start gap-6" onSubmit={onSubmit}>
         <div className="prose prose-stone dark:prose-invert">
           <TextareaAutosize
             ref={titleRef}
@@ -42,6 +43,10 @@ export const UsePostForm = (props: Props) => {
             Use <kbd className="rounded-md border bg-muted px-1 text-xs uppercase">Tab</kbd> to open the command menu.
           </p>
         </div>
+
+        <Button type="submit" className="w-full">
+          Post
+        </Button>
       </form>
     </div>
   )
