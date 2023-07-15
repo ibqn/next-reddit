@@ -1,7 +1,7 @@
 'use client'
 
 import EditorJS from '@editorjs/editorjs'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { editorTools } from './editor-tools'
 
 type Props = {
@@ -9,23 +9,17 @@ type Props = {
 }
 
 export const Editor = (props: Props) => {
-  const editorJs = useRef<EditorJS>()
+  const { onReady } = props
 
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setIsMounted(true)
-    }
-  }, [])
+  const editorJs = useRef<EditorJS | null>(null)
 
   useEffect(() => {
-    if (isMounted && !editorJs.current) {
+    if (typeof window !== 'undefined' && !editorJs.current) {
       const editor = new EditorJS({
         holder: 'editor',
-        onReady() {
+        onReady: () => {
           editorJs.current = editor
-          props?.onReady?.()
+          onReady?.()
         },
         placeholder: 'Type here to write your post...',
         inlineToolbar: true,
@@ -35,10 +29,10 @@ export const Editor = (props: Props) => {
     }
 
     return () => {
-      editorJs.current?.destroy()
-      editorJs.current = undefined
+      editorJs?.current?.destroy()
+      editorJs.current = null
     }
-  }, [isMounted, props])
+  }, [editorJs, onReady])
 
   return <div id="editor" className="min-h-[500px]"></div>
 }
