@@ -88,7 +88,7 @@ dependencies:
     version: 18.2.15
   '@uploadthing/react':
     specifier: ^5.2.0
-    version: 5.2.0(react-dropzone@14.2.3)(react@18.2.0)(uploadthing@5.2.0)(zod@3.21.4)
+    version: 5.2.0(react-dropzone@14.2.3)(react@18.2.0)(uploadthing@5.2.1)(zod@3.21.4)
   autoprefixer:
     specifier: ^10.4.14
     version: 10.4.14(postcss@8.4.26)
@@ -153,8 +153,8 @@ dependencies:
     specifier: ^0.32.3
     version: 0.32.3
   tailwind-merge:
-    specifier: ^1.13.2
-    version: 1.13.2
+    specifier: ^1.14.0
+    version: 1.14.0
   tailwindcss:
     specifier: ^3.3.3
     version: 3.3.3
@@ -165,8 +165,8 @@ dependencies:
     specifier: 5.1.6
     version: 5.1.6
   uploadthing:
-    specifier: ^5.2.0
-    version: 5.2.0(zod@3.21.4)
+    specifier: ^5.2.1
+    version: 5.2.1(zod@3.21.4)
   zod:
     specifier: ^3.21.4
     version: 3.21.4
@@ -1335,7 +1335,7 @@ packages:
     resolution: {integrity: sha512-nRcdyM622+GYT9SdaJIVLknqoc8i7krItinfuBPtvmPc+UNGDJ+pMkr4AatYp88cEc4iYtPlN8flJvZ3dNtgrg==}
     dev: false
 
-  /@uploadthing/react@5.2.0(react-dropzone@14.2.3)(react@18.2.0)(uploadthing@5.2.0)(zod@3.21.4):
+  /@uploadthing/react@5.2.0(react-dropzone@14.2.3)(react@18.2.0)(uploadthing@5.2.1)(zod@3.21.4):
     resolution: {integrity: sha512-kVM/3JZJhMgk2QGvyhyqPA5Zycq9TaqgCg/MNWvWDSgzw5MKeMyiXsEAJEQ7jO1BBjAfZ0O0NCM0VXCXuMLkPQ==}
     peerDependencies:
       react: ^17.0.2 || ^18.0.0
@@ -1345,7 +1345,7 @@ packages:
       '@uploadthing/shared': 5.1.0(@uploadthing/mime-types@0.2.0)(zod@3.21.4)
       react: 18.2.0
       react-dropzone: 14.2.3(react@18.2.0)
-      uploadthing: 5.2.0(zod@3.21.4)
+      uploadthing: 5.2.1(zod@3.21.4)
     transitivePeerDependencies:
       - '@uploadthing/mime-types'
       - zod
@@ -4053,8 +4053,8 @@ packages:
       tslib: 2.6.0
     dev: false
 
-  /tailwind-merge@1.13.2:
-    resolution: {integrity: sha512-R2/nULkdg1VR/EL4RXg4dEohdoxNUJGLMnWIQnPKL+O9Twu7Cn3Rxi4dlXkDzZrEGtR+G+psSXFouWlpTyLhCQ==}
+  /tailwind-merge@1.14.0:
+    resolution: {integrity: sha512-3mFKyCo/MBcgyOTlrY8T7odzZFx+w+qKSMAmdFzRvqBfLlSigU6TZnlFHK0lkMwj9Bj8OYU+9yW9lmGuS0QEnQ==}
     dev: false
 
   /tailwindcss-animate@1.0.6(tailwindcss@3.3.3):
@@ -4265,8 +4265,8 @@ packages:
       picocolors: 1.0.0
     dev: false
 
-  /uploadthing@5.2.0(zod@3.21.4):
-    resolution: {integrity: sha512-KE5G459EItoD4XKPib8DyknC5CvJKvM+6/cpaXzxUko3ZRByQo17qexZoUZURQFqYnpcjlvD+RCHu8M/rYpe5Q==}
+  /uploadthing@5.2.1(zod@3.21.4):
+    resolution: {integrity: sha512-vav6UwvEOzBSoPYHGsM6PksyAmyUoPPylkcveTgAUWVS5kKWaaxcOlgStShveTUo3JnoKD2E9Z2+z1BWXALv8A==}
     dependencies:
       '@uploadthing/mime-types': 0.2.0
       '@uploadthing/shared': 5.1.0(@uploadthing/mime-types@0.2.0)(zod@3.21.4)
