@@ -1,19 +1,30 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import dynamic from 'next/dynamic'
 import { Button } from './ui/button'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { PostPayload, PostValidator } from '@/lib/validators'
+import { error } from 'console'
+import { useToast } from './ui/use-toast'
 
 type Props = {
   subredditId: string
 }
 
 export const UsePostForm = ({ subredditId }: Props) => {
-  const { handleSubmit, register, setFocus, watch, setValue } = useForm<PostPayload>({
+  const { toast } = useToast()
+
+  const {
+    handleSubmit,
+    register,
+    setFocus,
+    watch,
+    setValue,
+    formState: { errors },
+  } = useForm<PostPayload>({
     resolver: zodResolver(PostValidator),
     defaultValues: {
       subredditId,
@@ -42,6 +53,19 @@ export const UsePostForm = ({ subredditId }: Props) => {
       ),
     []
   )
+
+  useEffect(() => {
+    if (Object.keys(errors).length) {
+      for (const [_key, error] of Object.entries(errors)) {
+        error?.message &&
+          toast({
+            title: 'Create post warnings',
+            description: error.message,
+            variant: 'yellow',
+          })
+      }
+    }
+  }, [errors, toast])
 
   return (
     <div className="w-full rounded-lg border border-zinc-200 bg-zinc-50 p-4">
