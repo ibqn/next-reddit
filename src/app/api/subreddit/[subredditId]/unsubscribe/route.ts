@@ -8,7 +8,7 @@ type Props = {
   }
 }
 
-export async function POST(req: Request, { params }: Props) {
+export async function POST(request: Request, { params }: Props) {
   const { subredditId } = params
   try {
     const session = await getAuthSession()

@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma'
 import { SubredditValidator } from '@/lib/validators'
 import { z } from 'zod'
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
   try {
     const session = await getAuthSession()
 
@@ -12,14 +12,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
     }
 
-    const body = await req.json()
+    const body = await request.json()
     const { name } = SubredditValidator.parse(body)
 
     // check if subreddit already exists
     const subredditExists = await prisma.subreddit.findFirst({
-      where: {
-        name,
-      },
+      where: { name },
     })
 
     if (subredditExists) {
