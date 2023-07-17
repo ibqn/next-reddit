@@ -6,8 +6,13 @@ import dynamic from 'next/dynamic'
 import { Button } from './ui/button'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { PostPayload, PostValidator } from '@/lib/validators'
+import { type PostPayload, PostValidator } from '@/lib/validators'
 import { useToast } from './ui/use-toast'
+import { useMutation } from '@tanstack/react-query'
+import axios from 'axios'
+import { useLoginToast } from '@/hooks/use-login-toast'
+import { usePathname, useRouter } from 'next/navigation'
+import { Loader2 } from 'lucide-react'
 
 type Props = {
   subredditId: string
@@ -15,12 +20,17 @@ type Props = {
 
 export const UsePostForm = ({ subredditId }: Props) => {
   const { toast } = useToast()
+  const { loginToast } = useLoginToast()
+
+  const pathname = usePathname()
+  const router = useRouter()
 
   const {
     handleSubmit,
     register,
     setFocus,
     watch,
+    reset,
     setValue,
     formState: { errors },
   } = useForm<PostPayload>({
@@ -34,8 +44,39 @@ export const UsePostForm = ({ subredditId }: Props) => {
 
   const content = watch('content')
 
+  const { mutate: createPost, isLoading } = useMutation({
+    mutationFn: (payload: PostPayload) => axios.post('/api/post', payload),
+    onSuccess: (data, variables, context) => {
+      reset()
+
+      const newPathname = pathname.split('/').slice(0, -1).join('/')
+      router.push(newPathname)
+      router.refresh()
+
+      toast({
+        title: 'Create post success',
+        description: `Post was created successfully`,
+        variant: 'green',
+      })
+    },
+    onError: (error, variables, context) => {
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        loginToast()
+      } else if (axios.isAxiosError(error) && error.response?.status === 409) {
+        toast({
+          title: 'Create post error',
+          description: error.response?.data?.message,
+          variant: 'yellow',
+        })
+      } else {
+        toast({ title: 'Create post error', description: 'Something went wrong!', variant: 'destructive' })
+      }
+    },
+  })
+
   const onSubmit = handleSubmit((data) => {
     console.log(data)
+    createPost(data)
   })
 
   const Editor = useMemo(
@@ -85,7 +126,8 @@ export const UsePostForm = ({ subredditId }: Props) => {
           </p>
         </div>
 
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          {isLoading && <Loader2 className="mr-2 h-6 w-6 animate-spin" />}
           Post
         </Button>
       </form>
