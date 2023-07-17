@@ -19,10 +19,7 @@ export const Editor = (props: Props) => {
     if (typeof window !== 'undefined' && !editorJs.current) {
       const editor = new EditorJS({
         holder: 'editor',
-        onReady: () => {
-          editorJs.current = editor
-          onReady?.()
-        },
+        onReady: () => onReady?.(),
         async onChange(api, event) {
           const data = await api.saver.save()
           onChange?.(data)
@@ -32,6 +29,7 @@ export const Editor = (props: Props) => {
         data,
         tools: editorTools,
       })
+      editorJs.current = editor
     }
 
     return () => {
