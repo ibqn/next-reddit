@@ -4,7 +4,7 @@ export const PostValidator = z.object({
   subredditId: z.string().min(1),
   title: z
     .string()
-    .min(1, { message: 'Title must be at least 3 characters long' })
+    .min(1, { message: 'Title must be at least 1 characters long' })
     .max(128, { message: 'Title must be at most 128 characters long' }),
   content: z.object({ blocks: z.array(z.any()) }),
 })
