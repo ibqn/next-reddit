@@ -1,4 +1,5 @@
 import { MiniCreatePost } from '@/components/mini-create-post'
+import { PostFeed } from '@/components/post-feed'
 import { getAuthSession } from '@/lib/auth'
 import { paginationSize } from '@/lib/config'
 import { prisma } from '@/lib/prisma'
@@ -38,6 +39,8 @@ export default async function SubredditPage({ params }: Props) {
     <div className="flex flex-col">
       <h1 className="h-14 text-3xl font-bold md:text-4xl">r/{subreddit.name}</h1>
       <MiniCreatePost session={session} />
+
+      <PostFeed />
     </div>
   )
 }
