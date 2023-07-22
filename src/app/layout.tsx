@@ -23,7 +23,7 @@ type Props = {
 
 export default function RootLayout({ children, authModal }: Props) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={cn(font.className, 'min-h-screen bg-slate-50 pt-12 font-light text-slate-900 antialiased')}>
         <Providers>
           <Navbar />
@@ -31,6 +31,7 @@ export default function RootLayout({ children, authModal }: Props) {
 
           <div className="container mx-auto h-full max-w-7xl pt-12">{children}</div>
         </Providers>
+
         <Toaster />
       </body>
     </html>
