@@ -21,7 +21,7 @@ type Props = {
 
 export function UserAccountNav({ user }: Props) {
   return (
-    <ClientOnly fallback={<div className="h-8 w-8 rounded-full bg-slate-200"></div>}>
+    <ClientOnly fallback={<UserAvatar user={user} className="h-8 w-8" />}>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <UserAvatar user={user} className="h-8 w-8" />
