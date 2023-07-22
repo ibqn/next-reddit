@@ -5,7 +5,6 @@ import { formatDistanceToNow } from 'date-fns'
 import { MessageSquare } from 'lucide-react'
 import Link from 'next/link'
 import { EditorOutput } from './editor-output'
-import { useEffect, useRef, useState } from 'react'
 import { OutputData } from '@editorjs/editorjs'
 import { useElementSize } from '@mantine/hooks'
 
