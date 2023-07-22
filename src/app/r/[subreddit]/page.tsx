@@ -36,11 +36,11 @@ export default async function SubredditPage({ params }: Props) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-6">
       <h1 className="h-14 text-3xl font-bold md:text-4xl">r/{subreddit.name}</h1>
       <MiniCreatePost session={session} />
 
-      <PostFeed />
+      <PostFeed initialPosts={subreddit.posts} subredditName={subreddit.name} />
     </div>
   )
 }
