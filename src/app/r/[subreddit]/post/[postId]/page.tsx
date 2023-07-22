@@ -35,7 +35,7 @@ export default async function SinglePage({ params }: Props) {
         <PostVoteServer postId={post.id} post={post} />
       </Suspense>
 
-      <div className="w-full flex-1 rounded-sm bg-white p-4 sm:w-0">
+      <div className="flex w-full flex-1 flex-col rounded-sm bg-white p-4 sm:w-0">
         <p className="mt-1 max-h-40 truncate text-xs text-gray-500">
           Posted by u/{post.author.username} {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
         </p>

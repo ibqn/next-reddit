@@ -12,8 +12,8 @@ export const ImageRenderer = ({ data: { file } }: Props) => {
   const { url } = file
 
   return (
-    <div className="relative min-h-[15rem] w-full">
-      <Image alt="image" className="object-contain" fill src={url} />
+    <div className="min-h-[15rem] w-full">
+      <Image alt="image" className="object-contain" width={400} height={400} src={url} />
     </div>
   )
 }

@@ -29,7 +29,7 @@ export default function RootLayout({ children, authModal }: Props) {
           <Navbar />
           {authModal}
 
-          <div className="container mx-auto h-full max-w-7xl pt-12">{children}</div>
+          <div className="container mx-auto flex max-w-7xl pt-12">{children}</div>
         </Providers>
 
         <Toaster />

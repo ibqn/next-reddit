@@ -50,7 +50,7 @@ export default async function SubredditLayout({ children, params }: Props) {
       : false
 
   return (
-    <div className="container mx-auto h-full max-w-7xl pt-12">
+    <div className="container mx-auto max-w-7xl flex-col pt-12">
       <FeedButton />
 
       <div className="grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4">
