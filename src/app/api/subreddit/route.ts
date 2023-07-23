@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { getAuthSession } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { SubredditValidator } from '@/lib/validators'
+import { subredditValidator } from '@/lib/validators'
 import { z } from 'zod'
 
 export async function POST(request: Request) {
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json()
-    const { name } = SubredditValidator.parse(body)
+    const { name } = subredditValidator.parse(body)
 
     // check if subreddit already exists
     const subredditExists = await prisma.subreddit.findFirst({

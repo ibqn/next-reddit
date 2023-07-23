@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
-export const SubredditValidator = z.object({
+export const subredditValidator = z.object({
   name: z.string().min(3).max(25),
 })
 
-export type CreateSubredditPayload = z.infer<typeof SubredditValidator>
+export type CreateSubredditPayload = z.infer<typeof subredditValidator>

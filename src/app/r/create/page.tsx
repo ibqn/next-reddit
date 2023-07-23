@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { type CreateSubredditPayload, SubredditValidator } from '@/lib/validators'
+import { type CreateSubredditPayload, subredditValidator } from '@/lib/validators'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
@@ -22,7 +22,7 @@ export default function CreatePage({}: Props) {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<CreateSubredditPayload>({ resolver: zodResolver(SubredditValidator) })
+  } = useForm<CreateSubredditPayload>({ resolver: zodResolver(subredditValidator) })
 
   const { mutate: createCommunity, isLoading } = useMutation({
     mutationFn: (payload: CreateSubredditPayload) => axios.post('/api/subreddit', payload),
