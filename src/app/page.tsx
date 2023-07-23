@@ -1,3 +1,4 @@
+import { GeneralFeed } from '@/components/feed'
 import { buttonVariants } from '@/components/ui/button'
 import { Home } from 'lucide-react'
 import Link from 'next/link'
@@ -9,6 +10,8 @@ export default function HomePage() {
         <h1 className="text-3xl font-bold md:text-4xl">Your feed</h1>
 
         <div className="grid grid-cols-1 gap-y-4 py-6 md:grid-cols-3 md:gap-x-4">
+          <GeneralFeed />
+
           <div className="order-first h-fit overflow-hidden rounded-lg border border-gray-200 md:order-last">
             <div className="bg-emerald-100 px-6 py-4">
               <p className="flex items-center gap-1.5 py-3 font-semibold">

@@ -32,7 +32,7 @@ export default async function SinglePage({ params }: Props) {
   return (
     <div className="flex flex-col items-center justify-between sm:flex-row sm:items-start">
       <Suspense fallback={<PostVoteShell />}>
-        <PostVoteServer postId={post.id} post={post} />
+        <PostVoteServer post={post} />
       </Suspense>
 
       <div className="flex w-full flex-1 flex-col rounded-sm bg-white p-4 sm:w-0">

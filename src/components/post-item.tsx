@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { EditorOutput } from './editor-output'
 import { OutputData } from '@editorjs/editorjs'
 import { useElementSize } from '@mantine/hooks'
+import { ReactNode } from 'react'
 
 type Props = {
   post: Post & {
@@ -15,15 +16,18 @@ type Props = {
     votes: Vote[]
   }
   subredditName: string
+  voteComponent: ReactNode
 }
 
 export const PostItem = (props: Props) => {
-  const { post, subredditName } = props
+  const { post, subredditName, voteComponent } = props
   const { ref: postRef, height } = useElementSize()
 
   return (
     <div className="rounded-md bg-white shadow-md">
       <div className="flex flex-row justify-between px-6 py-4">
+        {voteComponent}
+
         <div className="w-0 flex-1">
           <div className="mt-1 max-h-40 text-xs text-gray-500">
             <Link className="text-sm text-zinc-900 underline underline-offset-2" href={`/r/${subredditName}`}>

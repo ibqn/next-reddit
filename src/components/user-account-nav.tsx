@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { UserAvatar } from '@/components/user-avatar'
-import { ClientOnly } from './client-only'
+import { ClientOnly } from '@/components/client-only'
 
 type Props = {
   user: User
