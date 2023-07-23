@@ -33,6 +33,7 @@ export default function CreatePage({}: Props) {
         description: `The ${variables.name} community was created successfully`,
         variant: 'green',
       })
+      router.push(`/r/${variables.name}`)
     },
     onError: (error, variables, context) => {
       if (axios.isAxiosError(error) && error.response?.status === 401) {

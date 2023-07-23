@@ -28,7 +28,7 @@ export default function HomePage() {
                 className={buttonVariants({
                   className: 'mb-6 mt-4 w-full',
                 })}
-                href={`/r/create`}
+                href={`/create`}
               >
                 Create Community
               </Link>

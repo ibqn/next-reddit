@@ -40,7 +40,7 @@ export function UserAccountNav({ user }: Props) {
             </DropdownMenuItem>
 
             <DropdownMenuItem asChild>
-              <Link href="/r/create">Create Community</Link>
+              <Link href="/create">Create Community</Link>
             </DropdownMenuItem>
 
             <DropdownMenuItem asChild>
