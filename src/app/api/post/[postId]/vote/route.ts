@@ -79,7 +79,7 @@ export async function POST(req: Request, { params }: Props) {
   } catch (error) {
     if (error instanceof z.ZodError) {
       const messages = error.issues.map((issue) => issue.message)
-      return NextResponse.json({ messages }, { status: 400 })
+      return NextResponse.json({ messages }, { status: 409 })
     }
 
     return NextResponse.json({ message: 'Could not vote that post. Please try later' }, { status: 500 })
