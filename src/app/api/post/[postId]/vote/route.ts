@@ -4,7 +4,14 @@ import { postVoteValidator } from '@/lib/validators'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
-export async function POST(req: Request) {
+type Props = {
+  params: {
+    postId: string
+  }
+}
+
+export async function POST(req: Request, { params }: Props) {
+  const { postId } = params
   try {
     const session = await getAuthSession()
 
@@ -14,7 +21,7 @@ export async function POST(req: Request) {
 
     const body = await req.json()
 
-    const { postId, voteType } = postVoteValidator.parse(body)
+    const { voteType } = postVoteValidator.parse(body)
 
     const post = await prisma.post.findUnique({
       where: { id: postId },
