@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const PostValidator = z.object({
+export const postValidator = z.object({
   subredditId: z.string().min(1),
   title: z
     .string()
@@ -9,4 +9,4 @@ export const PostValidator = z.object({
   content: z.object({ blocks: z.array(z.any()) }),
 })
 
-export type PostPayload = z.infer<typeof PostValidator>
+export type PostPayload = z.infer<typeof postValidator>

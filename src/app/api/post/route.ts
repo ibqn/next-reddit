@@ -1,13 +1,13 @@
 import { getAuthSession } from '@/lib/auth'
 import { prisma } from '@/lib/prisma'
-import { PostValidator } from '@/lib/validators'
+import { postValidator } from '@/lib/validators'
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const { subredditId, content, title } = PostValidator.parse(body)
+    const { subredditId, content, title } = postValidator.parse(body)
 
     const session = await getAuthSession()
 
